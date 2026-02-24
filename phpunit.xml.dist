@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         cacheResultFile=".phpunit.cache/test-results"
+         executionOrder="depends,defects"
+         forceCoversAnnotatedCoveredMethods="false"
+         beStrictAboutCoversAnnotatedUncoveredCode="false"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutTodoTestedCode="true"
+         failOnRisky="true"
+         failOnWarning="true"
+         verbose="true">
+    <testsuites>
+        <!-- Core Tests -->
+        <testsuite name="Core">
+            <directory suffix="Test.php">tests/Unit/Core</directory>
+        </testsuite>
+
+        <!-- Infrastructure Tests -->
+        <testsuite name="Infrastructure">
+            <directory suffix="Test.php">tests/Unit/Infrastructure</directory>
+        </testsuite>
+
+        <!-- Repository Tests -->
+        <testsuite name="Repositories">
+            <directory suffix="Test.php">tests/Unit/Repositories</directory>
+        </testsuite>
+
+        <!-- Integration Tests -->
+        <testsuite name="Integration">
+            <directory suffix="Test.php">tests/Integration</directory>
+        </testsuite>
+    </testsuites>
+
+    <coverage cacheDirectory=".phpunit.cache/code-coverage"
+              processUncoveredFiles="true"
+              pathCoverage="false">
+        <include>
+            <directory suffix=".php">includes</directory>
+        </include>
+        <exclude>
+            <directory suffix="Interface.php">includes</directory>
+        </exclude>
+
+        <!-- Code Coverage Reporting -->
+        <report>
+            <html outputDirectory="coverage/html"/>
+            <text outputFile="coverage/coverage.txt" showUncoveredFiles="true"/>
+            <clover outputFile="coverage/clover.xml"/>
+        </report>
+    </coverage>
+
+    <php>
+        <!-- Database Configuration -->
+        <ini name="display_errors" value="1"/>
+        <ini name="error_reporting" value="-1"/>
+
+        <!-- WordPress Configuration (for integration tests) -->
+        <const name="WP_DEBUG" value="true"/>
+        <const name="WP_DEBUG_LOG" value="true"/>
+        <const name="SCRIPT_DEBUG" value="true"/>
+    </php>
+</phpunit>

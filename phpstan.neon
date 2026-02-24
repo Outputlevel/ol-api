@@ -1,0 +1,36 @@
+includes:
+  - vendor/phpstan/phpstan-strict-rules/rules.neon
+
+parameters:
+  level: 7
+  phpVersion: 80000
+
+  paths:
+    - includes/
+    - ol-api.php
+
+  excludes_analyse:
+    - tests/
+    - vendor/
+
+  reportUnmatchedIgnoredErrors: true
+  reportUnusedIgnoredErrors: false
+
+  ignoreErrors:
+    # WordPress global $wpdb is dynamically set
+    - '#Call to an undefined method HH\\Lib\\Regex.*#'
+
+  # Type checking
+  strictTypes: true
+  typeAliases:
+    QueryResult: 'array<string, mixed>|null'
+    QueryResults: 'array<array<string, mixed>>'
+    ComponentResolver: 'string|callable|object'
+
+  # Error patterns to ignore
+  errorPatternsToIgnore:
+    - '#(Call to deprecated|Deprecated in PHP)#'
+
+  # Extensions
+  extensions:
+    - phpstan/phpstan-php-parser

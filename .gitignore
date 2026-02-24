@@ -1,0 +1,58 @@
+# Composer
+vendor/
+composer.lock
+
+# PHPUnit
+coverage/
+.phpunit.cache/
+
+# Code analysis
+.phpstan/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+.env.*.php
+
+# Logs
+logs/
+*.log
+
+# Build artifacts
+build/
+dist/
+
+# Node (if using webpack or other tools)
+node_modules/
+npm-debug.log
+
+# OS specific
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Testing
+.phpcbf-cache
+
+# WordPress related (if developing in WordPress root)
+wp-config.php
+wp-content/uploads/
+wp-content/plugins/*/wp-content/
+wp-content/plugins/*/vendor/
+wp-content/plugins/*/node_modules/
+
+# Plugin specific
+/cache/*
+!/cache/.gitkeep
+/logs/*
+!/logs/.gitkeep
+/uploads/*
+!/uploads/.gitkeep

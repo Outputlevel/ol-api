@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<ruleset name="OL-API">
+	<description>OL-API WordPress Coding Standards Configuration</description>
+
+	<!-- Show progress of the scan. -->
+	<arg value="p"/>
+
+	<!-- Show sniff codes in all reports. -->
+	<arg value="s"/>
+
+	<!-- Directories and files to check. -->
+	<arg name="extensions" value="php"/>
+	<file>.</file>
+
+	<!-- Exclude directories. -->
+	<exclude-pattern>/vendor/</exclude-pattern>
+	<exclude-pattern>/tests/</exclude-pattern>
+	<exclude-pattern>/coverage/</exclude-pattern>
+	<exclude-pattern>/.git/</exclude-pattern>
+	<exclude-pattern>node_modules/</exclude-pattern>
+
+	<!-- Use WordPress standards. -->
+	<rule ref="WordPress">
+		<!-- Exclude some controversial sniffs. -->
+		<exclude name="WordPress.VIP"/>
+		<exclude name="WordPress.WP.Capabilities.Undetermined"/>
+	</rule>
+
+	<!-- Set minimum WordPress version. -->
+	<config name="minimum_supported_wordpress_version" value="5.9"/>
+
+	<!-- Set WordPress test prefix. -->
+	<config name="wp_deprecated_functions_version" value="5.9"/>
+
+	<!-- Use PSR standards for spacing. -->
+	<rule ref="Generic.WhiteSpace.ScopeIndent"/>
+	<rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
+
+	<!-- PHP compatibility check for PHP 8.0+ -->
+	<rule ref="PHPCompatibility">
+		<config name="testVersion" value="8.0-"/>
+	</rule>
+
+	<!-- Allow long lines if they're necessary (database queries, etc). -->
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="120"/>
+			<property name="absoluteLineLimit" value="150"/>
+		</properties>
+	</rule>
+
+	<!-- Check for proper escaping in output. -->
+	<rule ref="WordPress.Security.EscapeOutput"/>
+
+	<!-- Check for proper sanitization of input. -->
+	<rule ref="WordPress.Security.NonceVerification"/>
+
+	<!-- Disallow tabs for indentation. -->
+	<rule ref="WordPress.WhiteSpace.PrecisionAlignment">
+		<properties>
+			<property name="ignoreAlignmentBefore" type="array">
+				<element value="=>"/>
+				<element value="="/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>
